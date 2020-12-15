@@ -1,0 +1,54 @@
+{% extends "base/base.html" %}
+<!-- MainBody -->
+{% block mainbody %}
+
+	<!-- Content -->
+		<section>
+			<header class="main">
+				<h1>{{articles['article_name']}}</h1>
+			</header>
+			{% if articles['article_content'] %}
+				{{ articles['article_content'] | safe }}
+			{% else %}
+				<p>暂时没有相关的内容。</p>
+			{% endif %}
+		</section>
+
+{% endblock %}
+
+<!-- SidebarBody -->
+{% block sidebarbody %}
+
+	<!-- Section -->
+	<section>
+		<header class="major">
+			<h2>推荐链接</h2>
+		</header>
+		<div class="mini-posts">
+			{% for article in articles['articles'][:2] %}
+			<article>
+				<a href="{{ url_for('articles',topic=article.id) }}" class="image"><img src="{{ url_for('static', filename=article.picture_url) }}" alt="" /></a>
+				<p>{{article.introduce}}</p>
+			</article>
+			{% endfor %}
+
+			{% for article in articles['articles'][2:] %}
+			<div class="hiding">
+				
+				<article>
+					<a href="{{ url_for('articles',topic=article.id) }}" class="image"><img src="{{ url_for('static', filename=article.picture_url) }}" alt="" /></a>
+					<p>{{article.introduce}}</p>
+				</article>
+
+			</div>
+			<ul class="actions">
+				<li><a href="javascript:void(0)" class="button" onclick="showText(this)">显示所有</a></li>
+			</ul>
+			{% endfor %}
+		</div>
+
+	</section>
+
+{% endblock %}
+
+

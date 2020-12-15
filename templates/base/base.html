@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Corey工作站</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="{{ url_for('index') }}" class="logo"><strong>工作站</strong> by Corey</a>
+									<ul class="icons">
+										<li><a href="https://www.cnblogs.com/cjj-zyj/" class="icon fa-book" title="博客园"><span class="label">博客园</span></a></li>
+										<li><a href="https://github.com/Corey0606" class="icon fa-github" title="GitHub"><span class="label">GitHub</span></a></li>
+										<li><a href="mailto:473450296@qq.com?subject=在Corey的工作站：" class="icon fa-envelope" title="邮箱"><span class="label">邮箱</span></a></li>
+									</ul>
+								</header>
+                            <!-- MainBody -->
+                                {% block mainbody %}
+                                {% endblock %}
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Search -->
+								<section id="search" class="alt">
+									<form method="post" action="{{url_for('searchstr')}}">
+										<input type="text" name="query" id="query" placeholder="Search" />
+									</form>
+								</section>
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>菜单</h2>
+									</header>
+									<ul>
+										<li><a href="{{ url_for('index') }}">首页</a></li>
+							
+										<li><a href="{{ url_for('elements') }}">HTML5 模板库</a></li>
+										{% for project in sidebar_project %}
+										<li><a href="{{ url_for('query_item',whereitem = 'link_project',wherestr = project.id)}}">{{ project.name }}</a></li>
+										<!-- <li>
+											<span class="opener">功能展示</span>
+											<ul>
+												<li><a href="#">我的主站搭建</a></li>
+												<li><a href="#">Ipsum Adipiscing</a></li>
+												<li><a href="#">Tempus Magna</a></li>
+												<li><a href="#">Feugiat Veroeros</a></li>
+											</ul>
+										</li> -->
+										{% endfor %}
+									</ul>
+								</nav>
+
+                            <!-- SidebarBody -->
+                                {% block sidebarbody %}
+                                {% endblock %}
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>来看看吧</h2>
+									</header>
+									<p>ε=(´ο｀*)))唉，躺在沙发上看天花板，假装，假装很高冷的样子。谁来打搅我一下啊，啊，啊！！！</p>
+									<ul class="contact">
+										<li class="fa-envelope-open"><a href="mailto:473450296@qq.com?subject=在Corey的工作站：">473450296@qq.com</a></li>
+										<li class="fa-phone">(010) 159-1042-1462</li>
+										<li class="fa-home">北京市 昌平区<br />
+										金辰府</li>
+									</ul>
+								</section>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='assets/js/browser.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='assets/js/breakpoints.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='assets/js/util.js') }}"></script>
+			<script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+			<script src="{{ url_for('static', filename='assets/js/base_public.js') }}"></script>
+
+	</body>
+</html>

@@ -1,0 +1,57 @@
+{% extends "base/base.html" %}
+<!-- MainBody -->
+{% block mainbody %}
+
+<!-- Content -->
+	<section>
+		<header class="main">
+			<h1>搜索结果</h1>
+			<p>({{whereitem}})</p>
+		</header>
+		{% if count_article != 0 or count_feature != 0 %}
+			{% if count_article != 0 %}
+			<hr class="major">
+			<h2 id="link_article">相关文章</h2>
+			
+			{% for project in sidebar_article %}
+				{% for article in project['link_articles'] %}
+				<hr>
+				<article title="{{article.topic}}">
+					<h3 style="margin: 0 0 0 0;"><a href="{{url_for('articles',topic = article.id)}}">{{article.topic}}</a></h3>
+					<p><span class="icon fa-calendar"></span>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="blink_to_query(this,'link_date')">{{article.data_str}}</a></p>
+					<p>{{article.introduce}}</p>
+				</article>
+				{% endfor %}
+			{% endfor %}
+			{% endif %}
+			{% if count_feature != 0 %}
+				<hr class="major">
+				<h2 id="link_article">相关实验</h2>
+			
+				{% for project in sidebar_feature %}
+					{% for feature in project['link_features'] %}
+					<hr>
+					<article title="{{feature.name}}">
+						<h3 style="margin: 0 0 0 0;">{{feature.name}}</h3>
+						<p><span class="icon fa-calendar"></span>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="blink_to_query(this,'link_date')">{{feature.data_str}}</a></p>
+						<p>{{feature.introduce}}</p>
+					</article>
+					{% endfor %}
+				{% endfor %}
+			{% endif %}
+
+		{% else %}
+			<h2>对不起，找不到相关联的内容</h2>
+			<span class="image main"><img src="{{ url_for('static', filename='images/sad.jpg') }}" alt="" /></span>
+		{% endif %}
+	</section>
+
+{% endblock %}
+
+<!-- SidebarBody -->
+{% block sidebarbody %}
+
+<!-- Section -->
+
+
+{% endblock %}
