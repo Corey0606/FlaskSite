@@ -2,7 +2,6 @@ from flask_restful import Resource,reqparse
 from flask_jwt_extended import jwt_required
 
 from models.articles import ArticleModel
-
 _user_parser = reqparse.RequestParser()
 _user_parser.add_argument('topic',
                           type=str,
